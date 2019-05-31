@@ -9,3 +9,23 @@ const Event = require("./models/laptops");
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use(
+  "graphql",
+  graphqlHttp({
+    schema: buildSchema(`
+            type Laptop {
+                _id: ID!
+            }
+
+            input LaptopInput {
+
+            }
+
+            schema {
+                query: RootQuery
+                mutation: RootMutation
+            }
+        `)
+  })
+);
