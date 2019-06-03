@@ -141,7 +141,13 @@ app.use(
 );
 
 mongoose
-  .connect(``)
+  .connect(
+    `mongodb+srv://${process.env.MONGO_USER}:${
+      process.env.MONGO_PASSWORD
+    }@opentechapicluster-vv4q1.mongodb.net/${
+      process.env.MONGO_DB
+    }?retryWrites=true&w=majority`
+  )
   .then(() => {
     app.listen(3000);
   })
