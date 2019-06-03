@@ -30,8 +30,79 @@ const gpuSchema = new Schema({
     type: String,
     required: false
   },
+  launchDate: {
+    type: Date,
+    required: true
+  },
   fabricationProcess: {
     /*  Fabrication process. Average feature size of components of the processor. */
+    type: Number,
+    required: true
+  },
+  busInterface: {
+    /* Bus by which the graphics processor is attached to the system (typically an expansion slot, such as PCI, AGP, or PCI-Express). */
+    type: String,
+    required: true
+  },
+  coreClockFrequency: {
+    /* The factory core clock frequency; while some manufacturers adjust clocks lower and higher, this number will always be the reference clocks used by Nvidia. */
+  },
+  coreConfig: {
+    type: String,
+    required: false
+  },
+  memoryMaxSize: {
+    /* */
+    type: Number,
+    required: true
+  },
+  memoryMinSize: {
+    /* */
+    type: Number,
+    required: true
+  },
+  memoryClockFrequency: {
+    /* The factory effective memory clock frequency (while some manufacturers adjust clocks lower and higher, this number will always be the reference clocks used by Nvidia). All DDR/GDDR memories operate at half this frequency, except for GDDR5, which operates at one quarter of this frequency. */
+  },
+  memoryBandwidthGBs: {
+    type: Number,
+    required: true
+  },
+  memoryBusType: {
+    type: String,
+    required: true
+  },
+  mOperationsPerSecond: {
+    type: Number,
+    required: true
+  },
+  mPixelsPerSecond: {
+    type: Number,
+    required: true
+  },
+  mTexelsPerSecond: {
+    type: Number,
+    required: true
+  },
+  mVerticlesPerSecond: {
+    type: Number,
+    required: true
+  },
+  direct3dSupport: {
+    type: Boolean,
+    required: true
+  },
+  direct3dSupportVerion: {
+    //If not supported a 0 should be entered.
+    type: Number,
+    required: true
+  },
+  openGlSupport: {
+    type: Boolean,
+    required: true
+  },
+  openGlSupportVerion: {
+    //If not supported a 0 should be entered.
     type: Number,
     required: true
   }
