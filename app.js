@@ -116,11 +116,24 @@ app.use(
           .catch();
       },
       createCPU: args => {
-        const cpu = new CPU({});
+        const cpu = new CPU({
+          manufacturer: args.cpuInput.manufacturer,
+          modelNumber: args.cpuInput.modelNumber,
+          sSpecNumber: args.cpuInput.sSpecNumber,
+          numberOfCores: +args.cpuInput.numberOfCores,
+          coreFrequencyBase: +args.cpuInput.coreFrequencyBase,
+          coreFrequencyTurbo: +args.cpuInput.coreFrequencyTurbo
+        });
         return cpu
           .save()
-          .then()
-          .catch();
+          .then(result => {
+            console.log(result);
+            return { ...result._doc, _id: result._doc._id.toString() };
+          })
+          .catch(err => {
+            console.log(err);
+            throw err;
+          });
       }
     },
     graphiql: true
@@ -129,5 +142,9 @@ app.use(
 
 mongoose
   .connect(``)
-  .then()
-  .catch();
+  .then(() => {
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log(err);
+  });
