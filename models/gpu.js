@@ -3,16 +3,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const gpuSchema = new Schema({
-  gpuType: {
-    type: String,
-    required: true
-    //Desktop GPU
-    //Mobile GPU
-    //Workstation GPU
-    //Mobile Workstation GPU
-    //Grid GPU
-    //Console GPU
-  },
   manufacturer: {
     type: String,
     required: true
@@ -24,15 +14,25 @@ const gpuSchema = new Schema({
   },
   codeName: {
     /* The internal engineering codename for the processor(typically
-        designated by an NVXY name and later GXY where X is the 
-        series number and Y is the schedule of the project for that
-        generation). */
+            designated by an NVXY name and later GXY where X is the 
+            series number and Y is the schedule of the project for that
+            generation). */
     type: String,
     required: false
   },
   launchDate: {
     type: Date,
     required: true
+  },
+  gpuType: {
+    type: String,
+    required: true
+    //Desktop GPU
+    //Mobile GPU
+    //Workstation GPU
+    //Mobile Workstation GPU
+    //Grid GPU
+    //Console GPU
   },
   fabricationProcess: {
     /*  Fabrication process. Average feature size of components of the processor. */
@@ -46,6 +46,8 @@ const gpuSchema = new Schema({
   },
   coreClockFrequency: {
     /* The factory core clock frequency; while some manufacturers adjust clocks lower and higher, this number will always be the reference clocks used by Nvidia. */
+    type: Number,
+    required: true
   },
   coreConfig: {
     type: String,
@@ -58,8 +60,10 @@ const gpuSchema = new Schema({
   },
   memoryClockFrequency: {
     /* The factory effective memory clock frequency (while some manufacturers adjust clocks lower and higher, this number will always be the reference clocks used by Nvidia). All DDR/GDDR memories operate at half this frequency, except for GDDR5, which operates at one quarter of this frequency. */
+    type: Number,
+    required: true
   },
-  memoryBandwidthGBs: {
+  memoryBandwidth: {
     type: Number,
     required: true
   },
