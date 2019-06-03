@@ -7,7 +7,7 @@ const gpuSchema = new Schema({
     type: String,
     required: true
   },
-  modelName: {
+  modelNumber: {
     //The marketing name for the processor, assigned by manufacturer.
     type: String,
     required: true
