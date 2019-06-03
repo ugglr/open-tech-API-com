@@ -51,13 +51,8 @@ const gpuSchema = new Schema({
     type: String,
     required: false
   },
-  memoryMaxSize: {
-    /* */
-    type: Number,
-    required: true
-  },
-  memoryMinSize: {
-    /* */
+  memorySize: {
+    /* The size of the onboard memory*/
     type: Number,
     required: true
   },
