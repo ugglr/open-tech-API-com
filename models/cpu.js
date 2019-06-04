@@ -25,7 +25,7 @@ const cpuSchema = new Schema({
     required: true
   },
   launchDate: {
-    type: String,
+    type: Date,
     required: true
   },
   priceAtLaunch: {

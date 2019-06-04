@@ -24,6 +24,11 @@ const gpuSchema = new Schema({
     type: Date,
     required: true
   },
+  priceAtLaunch: {
+    //In USD
+    type: Number,
+    required: true
+  },
   gpuType: {
     type: String,
     required: true
@@ -44,6 +49,11 @@ const gpuSchema = new Schema({
     type: String,
     required: true
   },
+  numberOfCores: {
+    //Eg. 8
+    type: Number,
+    required: true
+  },
   coreClockFrequency: {
     /* The factory core clock frequency; while some manufacturers adjust clocks lower and higher, this number will always be the reference clocks used by Nvidia. */
     type: Number,
@@ -52,6 +62,11 @@ const gpuSchema = new Schema({
   coreConfig: {
     type: String,
     required: false
+  },
+  memoryType: {
+    //Eg. DDR5
+    type: String,
+    required: true
   },
   memorySize: {
     /* The size of the onboard memory*/
@@ -102,6 +117,11 @@ const gpuSchema = new Schema({
   },
   openGlSupportVerion: {
     //If not supported a 0 should be entered.
+    type: Number,
+    required: true
+  },
+  thermalDesignPower: {
+    //Rated in W
     type: Number,
     required: true
   }
