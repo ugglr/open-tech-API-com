@@ -12,7 +12,7 @@ const cpuSchema = new Schema({
   modelFamily: {
     //Eg. i3, i5, i7
     type: String,
-    required: false
+    required: true
   },
   modelNumber: {
     //Eg. i9-9900K
@@ -33,10 +33,6 @@ const cpuSchema = new Schema({
     type: Number,
     required: true
   },
-  // sSpecNumber: {
-  //   type: String,
-  //   required: false
-  // },
   numberOfCores: {
     //Eg. 8
     type: Number,

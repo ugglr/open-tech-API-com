@@ -14,18 +14,19 @@ const gpuSchema = new Schema({
   },
   codeName: {
     /* The internal engineering codename for the processor(typically
-            designated by an NVXY name and later GXY where X is the 
-            series number and Y is the schedule of the project for that
-            generation). */
+    designated by an NVXY name and later GXY where X is the 
+    series number and Y is the schedule of the project for that
+    generation). */
     type: String,
     required: false
   },
   launchDate: {
+    //When did the gpu hit the market
     type: Date,
     required: true
   },
   priceAtLaunch: {
-    //In USD
+    //Price of the GPU at market entry in USD
     type: Number,
     required: true
   },

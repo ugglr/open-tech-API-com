@@ -19,33 +19,64 @@ app.use(
             type CPU {
               _id: ID!
               manufacturer: String!
+              modelFamily: String!
               modelNumber: String!
-              sSpecNumber: String!
+              codeName: String!
+              launchDate: String!
+              priceAtLaunch: Float!
               numberOfCores: Int!
+              numberOfThreads: Int!
               coreFrequencyBase: Float!
               coreFrequencyTurbo: Float!
+              gpuName: String
+              gpuMaxClockFrequency: Float
+              cacheType: String!
+              cacheSize: Int!
+              thermalDesignPower: Int!
+              socket: String!
+              cpuType: String!
+              bitArchitecture: Int!
+              fabricationProcess: Int!
+              generation: Int
             }
 
             input CPUInput {
               manufacturer: String!
+              modelFamily: String!
               modelNumber: String!
-              sSpecNumber: String!
+              codeName: String!
+              launchDate: String!
+              priceAtLaunch: Float!
               numberOfCores: Int!
+              numberOfThreads: Int!
               coreFrequencyBase: Float!
               coreFrequencyTurbo: Float!
+              gpuName: String
+              gpuMaxClockFrequency: Float
+              cacheType: String!
+              cacheSize: Int!
+              thermalDesignPower: Int!
+              socket: String!
+              cpuType: String!
+              bitArchitecture: Int!
+              fabricationProcess: Int!
+              generation: Int
             }
 
             type GPU {
               _id: ID!
               manufacturer: String!
-              modelName: String!
-              codeName: String!
+              modelNumber: String!
+              codeName: String
               launchDate: String!
+              priceAtLaunch: Float!
               gpuType: String!
               fabricationProcess: Int!
               busInterface: String!
+              numberOfCores: Int!
               coreClockFrequency: Float!
-              coreConfig: String!
+              coreConfig: String
+              memoryType: String!
               memorySize: Int!
               memoryClockFrequency: Float!
               memoryBandwidth: Float!
@@ -58,18 +89,22 @@ app.use(
               direct3dSupportVersion: Float!
               openGlSupport: Boolean!
               openGlSupportVersion: Float!
+              thermalDesignPower: Int!
             }
 
             input GPUInput {
               manufacturer: String!
-              modelName: String!
-              codeName: String!
+              modelNumber: String!
+              codeName: String
               launchDate: String!
+              priceAtLaunch: Float!
               gpuType: String!
               fabricationProcess: Int!
               busInterface: String!
+              numberOfCores: Int!
               coreClockFrequency: Float!
-              coreConfig: String!
+              coreConfig: String
+              memoryType: String!
               memorySize: Int!
               memoryClockFrequency: Float!
               memoryBandwidth: Float!
@@ -82,6 +117,7 @@ app.use(
               direct3dSupportVersion: Float!
               openGlSupport: Boolean!
               openGlSupportVersion: Float!
+              thermalDesignPower: Int!
             }
 
             type RootQuery {
@@ -100,16 +136,22 @@ app.use(
             }
         `),
     rootValue: {
+      //CPU LOGIC
       cpus: () => {
         return CPU.find()
-          .then()
-          .catch();
+          .then(cpus => {
+            return cpus.map(cpu => {
+              return { ...cpu._doc, _id: cpu._doc._id.toString() };
+            });
+          })
+          .catch(err => {
+            throw err;
+          });
       },
       createCPU: args => {
         const cpu = new CPU({
           manufacturer: args.cpuInput.manufacturer,
           modelNumber: args.cpuInput.modelNumber,
-          sSpecNumber: args.cpuInput.sSpecNumber,
           numberOfCores: +args.cpuInput.numberOfCores,
           coreFrequencyBase: +args.cpuInput.coreFrequencyBase,
           coreFrequencyTurbo: +args.cpuInput.coreFrequencyTurbo
@@ -128,8 +170,14 @@ app.use(
       //GPU LOGIC
       gpus: () => {
         return GPU.find()
-          .then()
-          .catch();
+          .then(gpus => {
+            return gpus.map(gpu => {
+              return { ...gpu._doc, _id: gpu._doc._id.toString() };
+            });
+          })
+          .catch(err => {
+            throw err;
+          });
       },
       createGPU: args => {
         const gpu = new GPU({
