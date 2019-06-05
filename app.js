@@ -151,10 +151,25 @@ app.use(
       createCPU: args => {
         const cpu = new CPU({
           manufacturer: args.cpuInput.manufacturer,
+          modelFamily: args.cpuInput.modelFamily,
           modelNumber: args.cpuInput.modelNumber,
+          codeName: args.cpuInput.codeName,
+          launchDate: args.cpuInput.launchDate,
+          priceAtLaunch: args.cpuInput.priceAtLaunch,
           numberOfCores: +args.cpuInput.numberOfCores,
+          numberOfThreads: +args.cpuInput.numberOfThreads,
           coreFrequencyBase: +args.cpuInput.coreFrequencyBase,
-          coreFrequencyTurbo: +args.cpuInput.coreFrequencyTurbo
+          coreFrequencyTurbo: +args.cpuInput.coreFrequencyTurbo,
+          gpuName: args.cpuInput.gpuName,
+          gpuMaxClockFrequency: +args.cpuInput.gpuMaxClockFrequency,
+          cacheType: args.cpuInput.cacheType,
+          cacheSize: +args.cpuInput.cacheSize,
+          thermalDesignPower: +args.cpuInput.thermalDesignPower,
+          socket: args.cpuInput.socket,
+          cpuType: args.cpuInput.cpuType,
+          bitArchitecture: +args.cpuInput.bitArchitecture,
+          fabricationProcess: +args.cpuInput.fabricationProcess,
+          generation: +args.cpuInput.generation
         });
         return cpu
           .save()
@@ -182,14 +197,17 @@ app.use(
       createGPU: args => {
         const gpu = new GPU({
           manufacturer: args.gpuInput.manufacturer,
-          modelName: args.gpuInput.modelNumber,
+          modelNumber: args.gpuInput.modelNumber,
           codeName: args.gpuInput.codeName,
           launchDate: args.gpuInput.launchDate,
+          priceAtLaunch: +args.gpuInput.priceAtLaunch,
           gpuType: args.gpuInput.gpuType,
           fabricationProcess: +args.gpuInput.fabricationProcess,
           busInterface: args.gpuInput.busInterface,
+          numberOfCores: +args.gpuInput.numberOfCores,
           coreClockFrequency: +args.gpuInput.coreClockFrequency,
           coreConfig: args.gpuInput.coreConfig,
+          memoryType: args.gpuInput.memoryType,
           memorySize: +args.gpuInput.memorySize,
           memoryClockFrequency: +args.gpuInput.memoryClockFrequency,
           memoryBandwidth: +args.gpuInput.memoryBandwidth,
@@ -201,7 +219,8 @@ app.use(
           direct3dSupport: args.gpuInput.direct3dSupport,
           direct3dSupportVersion: +args.gpuInput.direct3dSupportVersion,
           openGlSupport: args.gpuInput.openGlSupport,
-          openGlSupportVersion: +args.gpuInput.openGlSupportVersion
+          openGlSupportVersion: +args.gpuInput.openGlSupportVersion,
+          thermalDesignPower: +args.gpuInput.thermalDesignPower
         });
         return gpu
           .save()
